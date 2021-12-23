@@ -42,21 +42,29 @@ async function main() {
     //"Bacteria;Actinobacteria;Actinobacteria;Actinomycetales;Corynebacteriaceae;Corynebacterium", 
     //"Bacteria;Bacteroidetes;Bacteroidia;Bacteroidales;Prevotellaceae;Prevotella"]},
 
-    // capture the sample.otu_ids
-    function search(source, name) {
-        var results = [];
-        var index;
-        var entry;
-    
-        name = name.toUpperCase();
-        for (index = 0; index < source.length; ++index) {
-            entry = source[index];
-            if (entry && entry.name && entry.name.toUpperCase().indexOf(name) !== -1) {
-                results.push(entry);
-            }
+    // arrays to hold "values"
+    // uto_labels= [];
+    // uto_ids = [];
+    // sample_values = [];
+
+    const samples = (data.samples);
+    console.log(samples);
+    // uto_ids = samples.map(function (row){
+    //     return row.otu_ids
+    // });
+    // console.log(uto_ids);
+
+    // // uto_labels = samples.map(function (row) {
+    // //     return row.uto_labels
+    // // });
+    // // console.log(uto_labels);
+    // // for loop to get each uto, label, value
+    for(let i = 0; i < samples.length; i++){ 
+        console.log(samples[i]);
+        let childArray = samples[i].otu_ids; 
+        for(let j = 0; j < childArray.length; j++){ 
+            console.log(childArray[j]);
         }
-    
-        return results;
     }
 }
 
