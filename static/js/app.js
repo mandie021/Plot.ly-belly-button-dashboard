@@ -95,11 +95,11 @@ async function main() {
 
     // for(var i = 0; i < metadata.length; i++) {
         for(const [key, value] of Object.entries(first_info)) {
-            console.log(`${key.toUpperCase()}: ${value}`);
+            console.log(`${key.toUpperCase()}: ${value} `);
             // var el = document.createElement("option");
             // el.textContent = info;
             // el.value = info;
-            PANEL.append(`${key.toUpperCase()}: ${value}`);
+            PANEL.append(`${key.toUpperCase()}: ${value} `);
         };
     // }    
    
