@@ -19,6 +19,14 @@ async function main() {
     // console.log(otu_ids);
     // console.log(sample_values);
 
+
+
+
+
+
+
+
+
 // slicing and sorting
     var topten_values = sample_values.sort((a,b) => b - a).slice(0,10).reverse();
     var top_labels = otu_labels.slice(0,10);
@@ -82,10 +90,11 @@ async function main() {
     // console.log(names)
     for(var i = 0; i < names.length; i++) {
         var id_names = names[i];
-        var el = document.createElement("option");
-        el.textContent = id_names;
-        el.value = id_names;
-        dropdown.appendChild(el);
+        var id = document.createElement("option");
+        id.textContent = id_names;
+        id.value = id_names;
+        dropdown.appendChild(id);
+        // console.log(id)
     }
 
 /// DEMOGRAPHIC PANEL
@@ -95,48 +104,65 @@ async function main() {
 
     // for(var i = 0; i < metadata.length; i++) {
         for(const [key, value] of Object.entries(first_info)) {
-            console.log(`${key.toUpperCase()}: ${value} `);
-            // var el = document.createElement("option");
-            // el.textContent = info;
-            // el.value = info;
-            PANEL.append(`${key.toUpperCase()}: ${value} `);
+            // console.log(`${key.toUpperCase()}: ${value} `);
+            PANEL.append(`${key.toUpperCase()}: ${value}`);
         };
     // }    
    
-    // key value pair panel
+    /// DASHBOARD SAMPLE CHANGE
+    // const id_change = document.getElementById('select');
+
+    // id_change.addEventListener('click', optionChanged);
     
-        
-
-    // var sample-metadata
-
-    //     document.querySelector("#selDataset").addEventListener("change", event => {
-    //         for (let i = 0; i < metadata.length; i++) {    
-    //                 let selDataset = metadata[i];         
-                    
-    //                 // create array of each item values
-    //                 // var otu_labels = Object.values(samplesArray.otu_labels);
-    //                 // var otu_ids = Object.values(samplesArray.otu_ids);
-    //                 // var sample_values = Object.values(samplesArray.sample_values);        
-    //         };
-        
-    //     $('#selDataset').hide();
-    //     optionChanged();
-    // });
-
-/// DASHBOARD SAMPLE CHANGE
-    const optionChanged = async function () {
-        console.log(selDataset());        
+    function optionChanged(id) {
+        var selectedSample = document.getElementByID('option').value;
+        //add value for selectedSample so you can work with the id.value or id.text
+        // var input = selectBox.options[selectBox.selectedIndex].value;
+        /// add argument to change charts if this.value is running a string object value
+        // this.value = id.value **** meaning this.value is equal to dropdown
+        alert(selectedSample);
+        // 
+    
+    
+    
+    
+    
+        // if input =
+        // for (let i = 0; i < samples.length; i++) {    
+        //     var samplesArray = samples[i];
+        //         var topten_values = samplesArray.otu_ids.sort((a,b) => b - a).slice(0,10).reverse();
+        //         var top_labels = samplesArray.otu_labels.slice(0,10);
+        //         var top_ids = samplesArray.otu_ids.slice(0,10).map(thing => `OTU ${thing}`).reverse();         
+        //         console.log("samplesArray", samplesArray);
+        //     // create array of each item values
+                // var otu_labels = Object.values(samplesArray.otu_labels[i]);
+                // var otu_ids = Object.values(samplesArray.otu_ids[i]);
+                // var sample_values = Object.values(samplesArray.sample_values[i]);
+        // };
     }
+    
 
-    // const
+    // document.querySelectorAll('selDataset').forEach((el) => {
+    //     el.addEventListener('click', (event) => {
+    //     console.time('selDataset');
+    //     event.preventDefault();
+    //     let data = [];
+
+    //     if (event.target.value == 'us') {
+    //         data = us;
+    //     }
+    //     else if (event.target.value == 'uk') {
+    //         data = uk;
+    //     }
+    //     else if (event.target.value == 'canada') {
+    //         data = canada;
+    //     }
+    //     const element = document.getElementById(event.target.dataset.target);
+    //     element.scrollIntoView();
+    //     console.timeEnd('selDataset');
+    //     });
+    // });
         
-
-    
-    
-    
-
-
-    
 
       
 
