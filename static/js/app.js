@@ -5,24 +5,24 @@ async function main() {
     console.log(data);
 
     let samples = data["samples"];
+
     // console.log('samples:', samples);
 
 /// Drop down with names
-var dropdown = document.getElementById('selDataset')
-var names = data.names
-
-// console.log(names)
+var dropdown = document.getElementById('selDataset');
+var names = data.names;
 for(var i = 0; i < names.length; i++) {
     var id_names = names[i];
     var id = document.createElement("option");
     id.textContent = id_names;
     id.value = id_names;
     dropdown.appendChild(id);
-    // console.log(id)
+    // console.log("ID", id)
+    // console.log("names", id_names)
 }
 // Samples person for first person id
     let first_id = id[0];
-    // console.log(first_id);
+    console.log("first id", first_id);
     chartBuild(first_id);
     metaBuild(first_id);
 
@@ -36,14 +36,21 @@ main();
     };
     
 /// BAR & BUBBLE CHART 
+// variables for the chart build
     function chartBuild(id){
         let samples = data["samples"];
-        let sArray = samples.filter(idObj => idObj.id == id);
+        let sArray = samples.filter(samples => samples.id == id);
+        console.log(samples) 
+        console.log(sArray)   
         let selected_sample = sArray[0];
+        console.log(selected_sample)
+// bubble chart values
         var otu_labels = selected_sample.otu_labels;
         var otu_ids = selected_sample.otu_ids;
         var sample_values = selected_sample.sample_values;   
-// slicing and sorting
+
+        
+// slicing and sorting for bar chart
         var topten_values = sample_values.sort((a,b) => b - a).slice(0,10).reverse();
         var top_labels = otu_labels.slice(0,10);
         var top_ids = otu_ids.slice(0,10).map(thing => `OTU ${thing}`).reverse();
@@ -102,13 +109,15 @@ main();
     function metaBuild(id){
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
-        let mArray = metadata.filter((idObj => idObj.id == id));
-        let selcected_demo = metadata[0];  
+        for(let i = 0; i < metadata.length; i++){ 
+            mArray= metadata[i];
+        };      
+        let selcected_demo = mArray.filter == id;  
         for(const [key, value] of Object.entries(selcected_demo)) {
             panel.append(`${key.toUpperCase()}: ${value}`);
         };
     };  
 
-}
+};
 
 main();
