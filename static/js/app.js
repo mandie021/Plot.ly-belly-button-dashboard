@@ -21,17 +21,20 @@ for(var i = 0; i < names.length; i++) {
     console.log("ID", id)
     console.log("names", id_names)
 };
+
+
 // Samples person for first person id
     /// using data.names ID 940 
     let first_id = data.names[0];
     console.log("first id", first_id);
     chartBuild(first_id);
     metaBuild(first_id);
-
+};
 //START DASHBOARD
 main();
 
-/// DASHBOARD SAMPLE CHANGE  
+/// DASHBOARD SAMPLE CHANGE
+    /// for new id #
     function optionChanged(new_id) {
         chartBuild(new_id);
         metaBuild(new_id);
@@ -41,22 +44,22 @@ main();
 // variables for the chart build
     //using data.samples for the sample values, otu ids, and otu labels
     function chartBuild(new_id){
-        let samples = data["samples"];
-        // var selected_sample;
-        // Loop through the length of the array
-        // for (let i = 0; i < samples.length; i++) {
-        //     console.log (i, samples[i]);
-        //     if (samples[i].id == id_names) {
-        //         selected_sample = samples[0]
-
-        //     }
-        // };
+        let samples = data.samples;
+        var selected_sample;
+    // Loop through the length of the array
+        for (let i = 0; i < samples.length; i++) {
+            console.log (i, samples[i]);
+            if (samples[i].id == id_names) {
+                new_id = samples[0];
+                console.log(new_id)
+            }
+        };
         // const sArray = Object.entries(samples);
-        // console.log(sArray)
+        
 
-        let sArray = samples.filter(samples => samples.id == id.names);
+        // let sArray = samples.filter(samples => samples.id == id.names);
 //         console.log(samples) 
-        console.log(sArray)   
+            // console.log(sArray)
 //         let selected_sample = sArray[0];
 //         console.log(selected_sample)
 
@@ -72,7 +75,7 @@ main();
         var top_labels = otu_labels.slice(0,10);
         var top_ids = otu_ids.slice(0,10).map(thing => `OTU ${thing}`).reverse();
 
-    };
+   
 
 
 // Create barchart
@@ -121,7 +124,7 @@ main();
     // plot bubble chart and layout
     Plotly.newPlot("bubble", bubble, layout2, {responsive: true});
 
-
+ };
 
 
 /// DEMOGRAPHIC PANEL
@@ -137,6 +140,6 @@ main();
         };
     };  
 
-};
+// };
 
-main();
+// main();
