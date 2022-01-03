@@ -58,10 +58,10 @@ main();
  
     // Loop through the length of the array
         for (let i = 0; i < samples.length; i++) {
-            console.log (i, samples[i]);
+            // console.log (i, samples[i]);
             if (samples[i].id == sample) {
                 new_id = samples[0];
-                console.log(new_id)
+                // console.log(new_id)
             }
         };
 
@@ -139,7 +139,7 @@ main();
         for(let i = 0; i < metadata.length; i++){ 
             if (metadata[i].id == sample) {
                 meta_id = metadata[0];
-                console.log(meta_id)
+                // console.log(meta_id)
             }
         };      
 
