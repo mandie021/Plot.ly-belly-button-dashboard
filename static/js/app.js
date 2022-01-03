@@ -11,9 +11,9 @@ async function main() {
 /// Drop down with names
     /// using data.names for the ID #
 var dropdown = document.getElementById('selDataset');
-dropdown.addEventListener('click', function(event) { 
-    sample = (event.target.value) 
-}) 
+// dropdown.addEventListener('click', function(event) { 
+//     sample = (event.target.value) 
+// }) 
 var names = data.names;
 for(var i = 0; i < names.length; i++) {
     var id_names = names[i];
@@ -39,6 +39,9 @@ main();
 /// DASHBOARD SAMPLE CHANGE
     /// for new id #
     function optionChanged(new_id) {
+        addEventListener('onchange', function(event) { 
+            sample = (event.target.value) 
+        }) 
         chartBuild(new_id);
         metaBuild(new_id);
     };
@@ -49,13 +52,9 @@ main();
     async function chartBuild(new_id){
         const response = await fetch("data/samples.json");
         const data = await response.json();
-        var dropdown = document.getElementById('selDataset');
-        dropdown.addEventListener('click', function(event) { 
-            sample = (event.target.value) 
-        }) 
         // console.log(data);
         let samples = data.samples;
- 
+  
     // Loop through the length of the array
         for (let i = 0; i < samples.length; i++) {
             // console.log (i, samples[i]);
@@ -129,10 +128,6 @@ main();
     async function metaBuild(new_id){
         const response = await fetch("data/samples.json");
         const data = await response.json();
-        var dropdown = document.getElementById('selDataset');
-        dropdown.addEventListener('click', function(event) { 
-            sample = (event.target.value) 
-        }) 
         // console.log(data);
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
@@ -144,6 +139,7 @@ main();
         };      
 
         for(const [key, value] of Object.entries(meta_id)) {
+            document.createElement("h6");
             panel.append(`${key.toUpperCase()}: ${value}`);
         };
     };  
