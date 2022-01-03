@@ -9,6 +9,7 @@ async function main() {
     // console.log('samples:', samples);
 
 /// Drop down with names
+    /// using data.names for the ID #
 var dropdown = document.getElementById('selDataset');
 var names = data.names;
 for(var i = 0; i < names.length; i++) {
@@ -17,11 +18,12 @@ for(var i = 0; i < names.length; i++) {
     id.textContent = id_names;
     id.value = id_names;
     dropdown.appendChild(id);
-    // console.log("ID", id)
-    // console.log("names", id_names)
-}
+    console.log("ID", id)
+    console.log("names", id_names)
+};
 // Samples person for first person id
-    let first_id = id[0];
+    /// using data.names ID 940 
+    let first_id = data.names[0];
     console.log("first id", first_id);
     chartBuild(first_id);
     metaBuild(first_id);
@@ -30,20 +32,35 @@ for(var i = 0; i < names.length; i++) {
 main();
 
 /// DASHBOARD SAMPLE CHANGE  
-    function optionChanged(id) {
-        chartBuild(id);
-        metaBuild(id);
+    function optionChanged(new_id) {
+        chartBuild(new_id);
+        metaBuild(new_id);
     };
     
 /// BAR & BUBBLE CHART 
 // variables for the chart build
-    function chartBuild(id){
+    //using data.samples for the sample values, otu ids, and otu labels
+    function chartBuild(new_id){
         let samples = data["samples"];
-        let sArray = samples.filter(samples => samples.id == id);
-        console.log(samples) 
+        // var selected_sample;
+        // Loop through the length of the array
+        // for (let i = 0; i < samples.length; i++) {
+        //     console.log (i, samples[i]);
+        //     if (samples[i].id == id_names) {
+        //         selected_sample = samples[0]
+
+        //     }
+        // };
+        // const sArray = Object.entries(samples);
+        // console.log(sArray)
+
+        let sArray = samples.filter(samples => samples.id == id.names);
+//         console.log(samples) 
         console.log(sArray)   
-        let selected_sample = sArray[0];
-        console.log(selected_sample)
+//         let selected_sample = sArray[0];
+//         console.log(selected_sample)
+
+
 // bubble chart values
         var otu_labels = selected_sample.otu_labels;
         var otu_ids = selected_sample.otu_ids;
@@ -57,7 +74,8 @@ main();
 
     };
 
-        // Create barchart
+
+// Create barchart
     var barchart = [{
         x: topten_values,
         y: top_ids,
@@ -74,8 +92,9 @@ main();
 
     // plot bar chart and layout
     Plotly.newPlot("bar", barchart, layout1, {responsive: true}); 
-   
-        // Create bubblechart
+ 
+    
+// Create bubblechart
     var bubble = [{
         x: otu_ids,
         y: sample_values,
@@ -106,13 +125,13 @@ main();
 
 
 /// DEMOGRAPHIC PANEL
-    function metaBuild(id){
+    function metaBuild(new_id){
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
         for(let i = 0; i < metadata.length; i++){ 
             mArray= metadata[i];
         };      
-        let selcected_demo = mArray.filter == id;  
+        let selcected_demo = mArray.filter == id_names;  
         for(const [key, value] of Object.entries(selcected_demo)) {
             panel.append(`${key.toUpperCase()}: ${value}`);
         };
