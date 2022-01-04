@@ -11,9 +11,7 @@ async function main() {
 /// Drop down with names
     /// using data.names for the ID #
 var dropdown = document.getElementById('selDataset');
-// dropdown.addEventListener('click', function(event) { 
-//     sample = (event.target.value) 
-// }) 
+
 var names = data.names;
 for(var i = 0; i < names.length; i++) {
     var id_names = names[i];
@@ -22,13 +20,13 @@ for(var i = 0; i < names.length; i++) {
     id.value = id_names;
     dropdown.appendChild(id);
     // console.log("ID", id)
-    // console.log("names", id_names)
+    console.log("names", id_names)
 };
 
 
 // Samples person for first person id
     /// using data.names ID 940 
-    let first_id = data.names[0];
+    let first_id = names[0];
     console.log("first id", first_id);
     chartBuild(first_id);
     metaBuild(first_id);
@@ -38,10 +36,7 @@ main();
 
 /// DASHBOARD SAMPLE CHANGE
     /// for new id #
-    function optionChanged(new_id) {
-        addEventListener('onchange', function(event) { 
-            sample = (event.target.value) 
-        }) 
+    function optionChanged(new_id) { 
         chartBuild(new_id);
         metaBuild(new_id);
     };
@@ -54,13 +49,14 @@ main();
         const data = await response.json();
         // console.log(data);
         let samples = data.samples;
+        first_id = samples[0];
   
     // Loop through the length of the array
         for (let i = 0; i < samples.length; i++) {
-            // console.log (i, samples[i]);
-            if (samples[i].id == sample) {
+            console.log (i, samples[i]);
+            if (samples[i].id == new_id) {
                 new_id = samples[0];
-                // console.log(new_id)
+                console.log(new_id)
             }
         };
 
@@ -128,19 +124,25 @@ main();
     async function metaBuild(new_id){
         const response = await fetch("data/samples.json");
         const data = await response.json();
+        
         // console.log(data);
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
         for(let i = 0; i < metadata.length; i++){ 
-            if (metadata[i].id == sample) {
-                meta_id = metadata[0];
+            if (metadata[i].id == new_id) {
+                new_id = metadata[0];
                 // console.log(meta_id)
             }
         };      
 
-        for(const [key, value] of Object.entries(meta_id)) {
-            document.createElement("h6");
-            panel.append(`${key.toUpperCase()}: ${value}`);
+        // clear the data of exsisting
+        panel.innerHTML = "";
+
+        // display using h6 tag 
+        for(const [key, value] of Object.entries(new_id)) {
+            var h6 =  document.createElement("h6");
+
+            panel.append(h6,`${key.toUpperCase()}: ${value}`);
         };
     };  
 
