@@ -109,7 +109,7 @@ main();
 
 //EVENT LISTENER
 //to get new id #
-    var new_id = document.addEventListener("change", event => {
+    var new_id = document.addEventListener("click", event => {
         document.querySelector("option").value;
     });
     console.log(new_id)
@@ -200,24 +200,21 @@ main();
  chartBuild();
 
 /// DEMOGRAPHIC PANEL
-    async function metaBuild(any_id){
+    async function metaBuild(new_id){
         const response = await fetch("data/samples.json");
         const data = await response.json();
         
         // console.log(data);
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
-        for(let i = 0; i < metadata.length; i++){ 
-            if (metadata[i].id == new_id) {
-                // new_id = metadata[0];
-            }
-        };      
+        var resultArray = metadata.filter(sampleObj => sampleObj.id == new_id);
+        var meta_id= resultArray[0]   
 
-        // // clear the data of exsisting
-        // panel.innerHTML = "";
+        // clear the data of exsisting
+        panel.innerHTML = "";
 
         // display using h6 tag 
-        for(const [key, value] of Object.entries(new_id)) {
+        for(const [key, value] of Object.entries(meta_id)) {
             var h6 =  document.createElement("h6");
             panel.append(h6,`${key.toUpperCase()}: ${value}`);
         };
