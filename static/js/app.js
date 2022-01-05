@@ -93,13 +93,6 @@ for(const [key, value] of Object.entries(meta_id)) {
     panel.append(h6,`${key.toUpperCase()}: ${value}`);
 };
 
-// console.log(id)
-// Samples person for first person id
-    /// using data.names ID 940 
-    // let first_id = names[0];
-    // // console.log("first id", first_id);
-    // chartBuild(first_id);
-    // metaBuild(first_id);
 };
 
 
@@ -130,11 +123,8 @@ main();
         // console.log(data);
         let samples = data.samples;
     
-  
         var resultArray = samples.filter(sampleObj => sampleObj.id == new_id);
         var new_sample= resultArray[0]
-
-    // Loop through the length of the array
 
    
 
@@ -208,13 +198,13 @@ main();
       var panel = document.getElementById('sample-metadata')
         let metadata = data.metadata
         var resultArray = metadata.filter(sampleObj => sampleObj.id == new_id);
-        var meta_id= resultArray[0]   
+        var demo_id= resultArray[0]   
 
         // clear the data of exsisting
         panel.innerHTML = "";
 
         // display using h6 tag 
-        for(const [key, value] of Object.entries(meta_id)) {
+        for(const [key, value] of Object.entries(demo_id)) {
             var h6 =  document.createElement("h6");
             panel.append(h6,`${key.toUpperCase()}: ${value}`);
         };
